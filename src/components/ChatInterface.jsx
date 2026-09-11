@@ -145,7 +145,7 @@ export default function ChatInterface({ theme }) {
             <div
               className={`w-8 h-8 sm:w-9 sm:h-9 rounded-xl flex items-center justify-center shrink-0 ${
                 msg.sender === 'user'
-                  ? 'bg-amber-500 text-black font-extrabold shadow-md'
+                  ? 'bg-amber-500 text-slate-950 font-black shadow-md'
                   : isLight
                   ? 'bg-slate-200 text-slate-800 border border-slate-300'
                   : 'bg-zinc-900 text-amber-400 border border-zinc-800'
@@ -156,18 +156,22 @@ export default function ChatInterface({ theme }) {
 
             {/* Message Bubble */}
             <div
-              className={`max-w-[90%] sm:max-w-[82%] rounded-2xl p-3.5 sm:p-4 space-y-3 glass-panel ${
+              className={`max-w-[90%] sm:max-w-[82%] rounded-2xl p-3.5 sm:p-4 space-y-3 ${
                 msg.sender === 'user'
-                  ? 'bg-gradient-to-r from-amber-400 via-amber-500 to-amber-600 text-slate-950 font-bold border border-amber-400/40 shadow-xl'
+                  ? isLight
+                    ? 'bg-amber-500 text-slate-950 font-bold border border-amber-600/30 shadow-md'
+                    : 'bg-zinc-900 text-amber-100 font-semibold border border-amber-500/40 shadow-xl'
                   : isLight
-                  ? 'bg-white/95 text-slate-900 border-slate-200 shadow-md'
-                  : 'bg-zinc-950/95 text-zinc-100 border-zinc-800/90 shadow-2xl'
+                  ? 'glass-panel bg-white/95 text-slate-900 border-slate-200 shadow-md'
+                  : 'glass-panel bg-zinc-950/95 text-zinc-100 border-zinc-800/90 shadow-2xl'
               }`}
             >
               {/* Message Header */}
               <div className={`flex items-center justify-between border-b pb-1.5 text-[11px] sm:text-xs ${
                 msg.sender === 'user'
-                  ? 'border-slate-950/20 text-slate-950 font-extrabold'
+                  ? isLight
+                    ? 'border-slate-950/20 text-slate-950 font-extrabold'
+                    : 'border-amber-500/30 text-amber-400 font-bold'
                   : isLight ? 'border-slate-200 text-slate-500' : 'border-zinc-800 text-zinc-400'
               }`}>
                 <span className="font-extrabold flex items-center space-x-1">
@@ -187,7 +191,9 @@ export default function ChatInterface({ theme }) {
                   }}
                 />
               ) : (
-                <div className="whitespace-pre-line text-xs sm:text-sm leading-relaxed text-slate-950 font-bold">
+                <div className={`whitespace-pre-line text-xs sm:text-sm leading-relaxed ${
+                  isLight ? 'text-slate-950 font-bold' : 'text-amber-100 font-semibold'
+                }`}>
                   {msg.text}
                 </div>
               )}
