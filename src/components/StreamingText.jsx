@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { CheckCircle2 } from 'lucide-react';
 
-/**
- * Renders text with progressive typewriter streaming reveal and bold top answer callout box.
- */
-export default function StreamingText({ fullText, isStreamingEnabled = true, onComplete }) {
+export default function StreamingText({ fullText, isStreamingEnabled = true, onComplete, theme }) {
   const [displayedLength, setDisplayedLength] = useState(isStreamingEnabled ? 0 : fullText.length);
+  const isLight = theme === 'light';
 
   useEffect(() => {
     if (!isStreamingEnabled) {
@@ -45,19 +43,25 @@ export default function StreamingText({ fullText, isStreamingEnabled = true, onC
     return (
       <div className="space-y-3" onClick={() => setDisplayedLength(fullText.length)}>
         {/* Highlighted Definitive Top Answer Callout Box */}
-        <div className="p-3.5 bg-gradient-to-r from-amber-500/20 via-amber-500/10 to-slate-900 border-l-4 border-amber-400 rounded-r-xl text-amber-200 font-bold text-sm sm:text-base leading-snug shadow-lg flex items-start space-x-2.5">
-          <CheckCircle2 className="w-5 h-5 text-amber-400 shrink-0 mt-0.5" />
+        <div className={`p-3.5 border-l-4 rounded-r-xl font-bold text-sm sm:text-base leading-snug shadow-md flex items-start space-x-2.5 ${
+          isLight
+            ? 'bg-gradient-to-r from-amber-500/20 via-amber-500/10 to-slate-50 border-amber-500 text-amber-900'
+            : 'bg-gradient-to-r from-amber-500/20 via-amber-500/10 to-slate-900 border-amber-400 text-amber-200'
+        }`}>
+          <CheckCircle2 className={`w-5 h-5 shrink-0 mt-0.5 ${isLight ? 'text-amber-600' : 'text-amber-400'}`} />
           <div className="flex-1">
             {topAnswer}
-            {!isDone && <span className="inline-block w-2 h-4 ml-1 bg-amber-400 animate-pulse" />}
+            {!isDone && <span className="inline-block w-2 h-4 ml-1 bg-amber-500 animate-pulse" />}
           </div>
         </div>
 
         {/* Detailed Red Book Context Breakdown */}
         {restText && (
-          <div className="whitespace-pre-line text-xs sm:text-sm leading-relaxed text-slate-200 pt-1">
+          <div className={`whitespace-pre-line text-xs sm:text-sm leading-relaxed pt-1 ${
+            isLight ? 'text-slate-800' : 'text-slate-200'
+          }`}>
             {restText}
-            {!isDone && parts.length > 1 && <span className="inline-block w-2 h-4 ml-1 bg-amber-400 animate-pulse" />}
+            {!isDone && parts.length > 1 && <span className="inline-block w-2 h-4 ml-1 bg-amber-500 animate-pulse" />}
           </div>
         )}
       </div>
@@ -66,11 +70,11 @@ export default function StreamingText({ fullText, isStreamingEnabled = true, onC
 
   return (
     <div
-      className="whitespace-pre-line text-xs sm:text-sm leading-relaxed"
+      className={`whitespace-pre-line text-xs sm:text-sm leading-relaxed ${isLight ? 'text-slate-800' : 'text-slate-200'}`}
       onClick={() => setDisplayedLength(fullText.length)}
     >
       {currentText}
-      {!isDone && <span className="inline-block w-2 h-4 ml-1 bg-amber-400 animate-pulse" />}
+      {!isDone && <span className="inline-block w-2 h-4 ml-1 bg-amber-500 animate-pulse" />}
     </div>
   );
 }

@@ -3,35 +3,45 @@
 @tailwind utilities;
 
 :root {
-  --bg-slate: #000000;
+  --bg-color: #000000;
+  --text-primary: #f4f4f5;
   --panel-bg: rgba(12, 12, 14, 0.94);
   --panel-border: rgba(255, 255, 255, 0.1);
+  --card-bg: rgba(18, 18, 22, 0.85);
+  --card-hover-bg: rgba(24, 24, 28, 0.95);
   --brand-amber: #f59e0b;
   --brand-amber-light: #fbbf24;
-  --brand-orange: #ea580c;
-  --brand-cyan: #06b6d4;
-  --brand-green: #10b981;
   --font-heading: 'Outfit', sans-serif;
   --font-body: 'Inter', sans-serif;
+}
+
+html.light {
+  --bg-color: #f8fafc;
+  --text-primary: #0f172a;
+  --panel-bg: rgba(255, 255, 255, 0.92);
+  --panel-border: rgba(0, 0, 0, 0.1);
+  --card-bg: rgba(255, 255, 255, 0.85);
+  --card-hover-bg: rgba(241, 245, 249, 0.95);
 }
 
 body {
   margin: 0;
   padding: 0;
   font-family: var(--font-body);
-  background-color: #000000;
-  color: #f4f4f5;
+  background-color: var(--bg-color);
+  color: var(--text-primary);
   min-height: 100vh;
   min-height: 100dvh;
   overflow-x: hidden;
   -webkit-tap-highlight-color: transparent;
+  transition: background-color 0.25s ease, color 0.25s ease;
 }
 
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading);
 }
 
-/* Glassmorphism utilities with Pitch Black backdrop */
+/* Glassmorphism utilities */
 .glass-panel {
   background: var(--panel-bg);
   backdrop-filter: blur(20px);
@@ -40,14 +50,14 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .glass-card {
-  background: rgba(18, 18, 22, 0.85);
+  background: var(--card-bg);
   backdrop-filter: blur(14px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--panel-border);
   transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .glass-card:hover {
-  background: rgba(24, 24, 28, 0.95);
+  background: var(--card-hover-bg);
   border-color: rgba(245, 158, 11, 0.4);
 }
 
@@ -67,11 +77,11 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 ::-webkit-scrollbar-track {
-  background: #000000;
+  background: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(245, 158, 11, 0.35);
+  background: rgba(245, 158, 11, 0.4);
   border-radius: 9999px;
 }
 
