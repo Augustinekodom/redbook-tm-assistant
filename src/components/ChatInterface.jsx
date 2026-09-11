@@ -145,20 +145,20 @@ export default function ChatInterface({ theme }) {
             <div
               className={`w-8 h-8 sm:w-9 sm:h-9 rounded-xl flex items-center justify-center shrink-0 ${
                 msg.sender === 'user'
-                  ? 'bg-amber-500 text-slate-950 font-bold'
+                  ? 'bg-amber-500 text-black font-extrabold shadow-md'
                   : isLight
                   ? 'bg-slate-200 text-slate-800 border border-slate-300'
                   : 'bg-zinc-900 text-amber-400 border border-zinc-800'
               }`}
             >
-              {msg.sender === 'user' ? <User className="w-4 h-4 sm:w-5 sm:h-5" /> : <HardHat className="w-4 h-4 sm:w-5 sm:h-5" />}
+              {msg.sender === 'user' ? <User className="w-4 h-4 sm:w-5 sm:h-5 stroke-[2.5]" /> : <HardHat className="w-4 h-4 sm:w-5 sm:h-5" />}
             </div>
 
             {/* Message Bubble */}
             <div
               className={`max-w-[90%] sm:max-w-[82%] rounded-2xl p-3.5 sm:p-4 space-y-3 glass-panel ${
                 msg.sender === 'user'
-                  ? 'bg-gradient-to-r from-amber-500 to-amber-600 text-slate-950 font-semibold shadow-md'
+                  ? 'bg-gradient-to-r from-amber-400 via-amber-500 to-amber-600 text-slate-950 font-bold border border-amber-400/40 shadow-xl'
                   : isLight
                   ? 'bg-white/95 text-slate-900 border-slate-200 shadow-md'
                   : 'bg-zinc-950/95 text-zinc-100 border-zinc-800/90 shadow-2xl'
@@ -167,16 +167,16 @@ export default function ChatInterface({ theme }) {
               {/* Message Header */}
               <div className={`flex items-center justify-between border-b pb-1.5 text-[11px] sm:text-xs ${
                 msg.sender === 'user'
-                  ? 'border-slate-950/10 opacity-80'
+                  ? 'border-slate-950/20 text-slate-950 font-extrabold'
                   : isLight ? 'border-slate-200 text-slate-500' : 'border-zinc-800 text-zinc-400'
               }`}>
-                <span className="font-bold flex items-center space-x-1">
+                <span className="font-extrabold flex items-center space-x-1">
                   {msg.sender === 'user' ? 'You' : 'RedBook Safety AI'}
                 </span>
-                <span>{msg.timestamp}</span>
+                <span className="font-semibold">{msg.timestamp}</span>
               </div>
 
-              {/* Streaming Text Body */}
+              {/* Text Body */}
               {msg.sender === 'bot' ? (
                 <StreamingText
                   fullText={msg.text}
@@ -187,7 +187,9 @@ export default function ChatInterface({ theme }) {
                   }}
                 />
               ) : (
-                <div className="whitespace-pre-line text-xs sm:text-sm leading-relaxed">{msg.text}</div>
+                <div className="whitespace-pre-line text-xs sm:text-sm leading-relaxed text-slate-950 font-bold">
+                  {msg.text}
+                </div>
               )}
 
               {/* Citations Box (Bot Only) */}
@@ -315,7 +317,7 @@ export default function ChatInterface({ theme }) {
           <button
             type="submit"
             disabled={!inputQuery.trim() || isLoading}
-            className="w-10 h-10 rounded-xl bg-amber-500 text-slate-950 font-bold hover:bg-amber-400 disabled:opacity-50 disabled:cursor-not-allowed transition-all flex items-center justify-center shrink-0 shadow-md"
+            className="w-10 h-10 rounded-xl bg-amber-500 text-slate-950 font-extrabold hover:bg-amber-400 disabled:opacity-50 disabled:cursor-not-allowed transition-all flex items-center justify-center shrink-0 shadow-md"
           >
             <Send className="w-5 h-5" />
           </button>
