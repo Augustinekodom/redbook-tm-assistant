@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { RED_BOOK_CHUNKS, RED_BOOK_METADATA } from '../data/redbook_kb';
-import { Search, BookOpen, FileText, Tag, ChevronRight, Scale } from 'lucide-react';
+import { Search, BookOpen, ChevronRight, Scale } from 'lucide-react';
 
 export default function RedBookBrowser() {
   const [searchTerm, setSearchTerm] = useState('');
@@ -18,10 +18,10 @@ export default function RedBookBrowser() {
   });
 
   return (
-    <div className="max-w-7xl mx-auto px-4 py-6 sm:px-6 space-y-6">
+    <div className="max-w-7xl mx-auto px-4 py-6 sm:px-6 space-y-6 bg-black">
       
       {/* Header Info */}
-      <div className="glass-panel p-6 rounded-2xl border border-slate-800 space-y-3">
+      <div className="glass-panel p-6 rounded-2xl border border-zinc-800 space-y-3">
         <div className="flex items-center space-x-3">
           <div className="p-3 bg-amber-500/20 text-amber-400 rounded-xl">
             <BookOpen className="w-6 h-6" />
@@ -30,7 +30,7 @@ export default function RedBookBrowser() {
             <h2 className="text-xl font-bold text-white font-heading">
               Red Book Statutory Code Browser
             </h2>
-            <p className="text-xs text-slate-400">
+            <p className="text-xs text-zinc-400">
               {RED_BOOK_METADATA.title} ({RED_BOOK_METADATA.edition})
             </p>
           </div>
@@ -44,13 +44,13 @@ export default function RedBookBrowser() {
 
       {/* Search Filter */}
       <div className="relative">
-        <Search className="w-5 h-5 absolute left-4 top-3.5 text-slate-400" />
+        <Search className="w-5 h-5 absolute left-4 top-3.5 text-zinc-500" />
         <input
           type="text"
           value={searchTerm}
           onChange={e => setSearchTerm(e.target.value)}
           placeholder="Search Red Book sections, topics, keywords (e.g. taper, pedestrian, 1.2m, signals)..."
-          className="w-full bg-slate-900 border border-slate-800 rounded-xl py-3 pl-12 pr-4 text-sm text-white focus:outline-none focus:border-amber-500"
+          className="w-full bg-zinc-950 border border-zinc-800 rounded-xl py-3 pl-12 pr-4 text-sm text-white focus:outline-none focus:border-amber-500"
         />
       </div>
 
@@ -62,8 +62,8 @@ export default function RedBookBrowser() {
             onClick={() => setSelectedSection(selectedSection === chunk.id ? null : chunk.id)}
             className={`glass-card p-5 rounded-2xl border cursor-pointer transition-all space-y-3 ${
               selectedSection === chunk.id
-                ? 'border-amber-500/50 bg-slate-900'
-                : 'border-slate-800 hover:border-slate-700'
+                ? 'border-amber-500/50 bg-zinc-950'
+                : 'border-zinc-800 hover:border-zinc-700 bg-zinc-950/80'
             }`}
           >
             <div className="flex items-start justify-between">
@@ -76,13 +76,13 @@ export default function RedBookBrowser() {
                 </h3>
               </div>
               <ChevronRight
-                className={`w-5 h-5 text-slate-400 transition-transform ${
+                className={`w-5 h-5 text-zinc-500 transition-transform ${
                   selectedSection === chunk.id ? 'rotate-90 text-amber-400' : ''
                 }`}
               />
             </div>
 
-            <p className="text-xs text-slate-300 leading-relaxed whitespace-pre-line">
+            <p className="text-xs text-zinc-300 leading-relaxed whitespace-pre-line">
               {selectedSection === chunk.id
                 ? chunk.content
                 : `${chunk.content.slice(0, 140)}...`}
@@ -92,7 +92,7 @@ export default function RedBookBrowser() {
               {chunk.keywords.map((kw, idx) => (
                 <span
                   key={idx}
-                  className="px-2 py-0.5 bg-slate-950 text-slate-400 text-[10px] rounded border border-slate-800"
+                  className="px-2 py-0.5 bg-black text-zinc-400 text-[10px] rounded border border-zinc-800"
                 >
                   #{kw}
                 </span>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { X, Key, Check, Database, Shield, Zap, Sparkles } from 'lucide-react';
+import { X, Key, Check, Database, Shield, Zap } from 'lucide-react';
 
 export default function SettingsModal({ isOpen, onClose }) {
   const [apiKey, setApiKey] = useState('');
@@ -27,8 +27,8 @@ export default function SettingsModal({ isOpen, onClose }) {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm">
-      <div className="glass-panel max-w-md w-full rounded-2xl border border-slate-800 p-6 space-y-6 bg-slate-900">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/90 backdrop-blur-md">
+      <div className="glass-panel max-w-md w-full rounded-2xl border border-zinc-800 p-6 space-y-6 bg-zinc-950">
         
         {/* Header */}
         <div className="flex items-center justify-between">
@@ -38,7 +38,7 @@ export default function SettingsModal({ isOpen, onClose }) {
           </div>
           <button
             onClick={onClose}
-            className="p-1 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800"
+            className="p-1 rounded-lg text-zinc-400 hover:text-white hover:bg-zinc-900"
           >
             <X className="w-5 h-5" />
           </button>
@@ -58,7 +58,7 @@ export default function SettingsModal({ isOpen, onClose }) {
         {/* Form */}
         <form onSubmit={handleSave} className="space-y-4">
           <div>
-            <label className="text-xs font-semibold text-slate-400 uppercase tracking-wider block mb-2">
+            <label className="text-xs font-semibold text-zinc-400 uppercase tracking-wider block mb-2">
               Google Gemini API Key (Free Tier):
             </label>
             <input
@@ -66,9 +66,9 @@ export default function SettingsModal({ isOpen, onClose }) {
               value={apiKey}
               onChange={e => setApiKey(e.target.value)}
               placeholder="AIzaSy..."
-              className="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-amber-500 font-mono"
+              className="w-full bg-black border border-zinc-800 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-amber-500 font-mono"
             />
-            <p className="text-[11px] text-slate-500 mt-1">
+            <p className="text-[11px] text-zinc-500 mt-1">
               Get your free key from <a href="https://aistudio.google.com" target="_blank" rel="noreferrer" className="text-amber-400 underline">Google AI Studio</a>. Key is saved locally in browser storage.
             </p>
           </div>
@@ -77,17 +77,17 @@ export default function SettingsModal({ isOpen, onClose }) {
             <button
               type="button"
               onClick={onClose}
-              className="px-4 py-2 rounded-xl text-sm font-semibold text-slate-300 hover:bg-slate-800"
+              className="px-4 py-2 rounded-xl text-sm font-semibold text-zinc-300 hover:bg-zinc-900"
             >
               Cancel
             </button>
             <button
               type="submit"
-              className="px-4 py-2 rounded-xl text-sm font-semibold bg-amber-500 text-slate-950 hover:bg-amber-400 transition-colors flex items-center space-x-1"
+              className="px-4 py-2 rounded-xl text-sm font-semibold bg-amber-500 text-black hover:bg-amber-400 transition-colors flex items-center space-x-1"
             >
               {saved ? (
                 <>
-                  <Check className="w-4 h-4 text-slate-950" />
+                  <Check className="w-4 h-4 text-black" />
                   <span>Saved!</span>
                 </>
               ) : (
@@ -98,7 +98,7 @@ export default function SettingsModal({ isOpen, onClose }) {
         </form>
 
         {/* System Architecture Badges */}
-        <div className="pt-4 border-t border-slate-800 grid grid-cols-2 gap-2 text-[11px] text-slate-400">
+        <div className="pt-4 border-t border-zinc-800 grid grid-cols-2 gap-2 text-[11px] text-zinc-400">
           <div className="flex items-center space-x-1">
             <Database className="w-3.5 h-3.5 text-cyan-400" />
             <span>Vector Store: PostgreSQL / `pgvector`</span>

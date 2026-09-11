@@ -9,7 +9,7 @@ export default function MobileBottomNav({ activeTab, setActiveTab }) {
   ];
 
   return (
-    <div className="md:hidden fixed bottom-0 left-0 right-0 z-50 glass-panel border-t border-slate-800 bg-slate-950/95 backdrop-blur-xl px-2 py-1.5 shadow-2xl">
+    <div className="md:hidden fixed bottom-0 left-0 right-0 z-50 glass-panel border-t border-zinc-800 bg-black/95 backdrop-blur-xl px-2 py-1.5 shadow-2xl">
       <div className="grid grid-cols-3 gap-1 max-w-md mx-auto">
         {navItems.map(item => {
           const Icon = item.icon;
@@ -21,7 +21,7 @@ export default function MobileBottomNav({ activeTab, setActiveTab }) {
               className={`flex flex-col items-center justify-center py-2 px-1 rounded-xl transition-all min-h-[48px] ${
                 isActive
                   ? 'bg-amber-500/15 text-amber-400 font-bold border border-amber-500/30'
-                  : 'text-slate-400 hover:text-slate-200'
+                  : 'text-zinc-400 hover:text-zinc-200'
               }`}
             >
               <Icon className={`w-5 h-5 transition-transform ${isActive ? 'scale-110 text-amber-400' : ''}`} />

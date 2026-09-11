@@ -128,7 +128,7 @@ export default function ChatInterface() {
   ];
 
   return (
-    <div className="max-w-4xl mx-auto px-2.5 sm:px-4 py-3 sm:py-6 flex flex-col h-[calc(100dvh-3.75rem)] sm:h-[calc(100vh-4rem)]">
+    <div className="max-w-4xl mx-auto px-2.5 sm:px-4 py-3 sm:py-6 flex flex-col h-[calc(100dvh-3.75rem)] sm:h-[calc(100vh-4rem)] bg-black">
       
       {/* Messages Container */}
       <div className="flex-1 overflow-y-auto space-y-3.5 pr-1">
@@ -143,8 +143,8 @@ export default function ChatInterface() {
             <div
               className={`w-8 h-8 sm:w-9 sm:h-9 rounded-xl flex items-center justify-center shrink-0 ${
                 msg.sender === 'user'
-                  ? 'bg-amber-500 text-slate-950 font-bold'
-                  : 'bg-slate-800 text-amber-400 border border-slate-700'
+                  ? 'bg-amber-500 text-black font-bold'
+                  : 'bg-zinc-900 text-amber-400 border border-zinc-800'
               }`}
             >
               {msg.sender === 'user' ? <User className="w-4 h-4 sm:w-5 sm:h-5" /> : <HardHat className="w-4 h-4 sm:w-5 sm:h-5" />}
@@ -154,8 +154,8 @@ export default function ChatInterface() {
             <div
               className={`max-w-[90%] sm:max-w-[82%] rounded-2xl p-3.5 sm:p-4 space-y-3 glass-panel ${
                 msg.sender === 'user'
-                  ? 'bg-gradient-to-r from-amber-500 to-amber-600 text-slate-950 font-medium'
-                  : 'bg-slate-900/95 text-slate-100 border-slate-800 shadow-xl'
+                  ? 'bg-gradient-to-r from-amber-500 to-amber-600 text-black font-semibold'
+                  : 'bg-zinc-950/95 text-zinc-100 border-zinc-800/90 shadow-2xl'
               }`}
             >
               {/* Message Header */}
@@ -181,7 +181,7 @@ export default function ChatInterface() {
 
               {/* Citations Box (Bot Only) */}
               {msg.sender === 'bot' && msg.citations && msg.citations.length > 0 && (
-                <div className="pt-2 border-t border-slate-800/80 space-y-2">
+                <div className="pt-2 border-t border-zinc-800/80 space-y-2">
                   <div className="text-[11px] sm:text-xs font-semibold text-amber-400 flex items-center space-x-1">
                     <BookOpen className="w-3.5 h-3.5" />
                     <span>Statutory References (Red Book Code of Practice):</span>
@@ -191,11 +191,11 @@ export default function ChatInterface() {
                     {msg.citations.map((cit, idx) => (
                       <div
                         key={idx}
-                        className="px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-lg bg-slate-950 border border-amber-500/20 text-[10px] sm:text-xs text-slate-300 font-mono flex items-center space-x-1"
+                        className="px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-lg bg-black border border-amber-500/20 text-[10px] sm:text-xs text-zinc-300 font-mono flex items-center space-x-1"
                       >
                         <span className="text-amber-400 font-bold">{cit.section}</span>
                         <span>• Page {cit.page}</span>
-                        <span className="text-slate-400">({cit.tableRef})</span>
+                        <span className="text-zinc-500">({cit.tableRef})</span>
                       </div>
                     ))}
                   </div>
@@ -205,12 +205,12 @@ export default function ChatInterface() {
               {/* Actions Footer */}
               {msg.sender === 'bot' && (
                 <div className="flex items-center justify-between pt-1">
-                  <span className="text-[10px] text-slate-500 font-mono">
+                  <span className="text-[10px] text-zinc-500 font-mono">
                     {msg.source || 'Statutory Grounded RAG'}
                   </span>
                   <button
                     onClick={() => copyToClipboard(msg.id, msg.text)}
-                    className="p-1 rounded text-slate-400 hover:text-white transition-colors"
+                    className="p-1 rounded text-zinc-400 hover:text-white transition-colors"
                     title="Copy Answer"
                   >
                     {copiedId === msg.id ? (
@@ -229,10 +229,10 @@ export default function ChatInterface() {
         {/* Loading Indicator */}
         {isLoading && (
           <div className="flex items-center space-x-2.5">
-            <div className="w-8 h-8 rounded-xl bg-slate-800 text-amber-400 border border-slate-700 flex items-center justify-center">
+            <div className="w-8 h-8 rounded-xl bg-zinc-900 text-amber-400 border border-zinc-800 flex items-center justify-center">
               <HardHat className="w-4 h-4 animate-bounce" />
             </div>
-            <div className="glass-panel px-3.5 py-2.5 rounded-2xl bg-slate-900/90 text-xs text-amber-400 flex items-center space-x-2">
+            <div className="glass-panel px-3.5 py-2.5 rounded-2xl bg-zinc-950 text-xs text-amber-400 flex items-center space-x-2 border-zinc-800">
               <span className="w-2 h-2 rounded-full bg-amber-400 animate-ping" />
               <span>Searching Red Book Code of Practice index...</span>
             </div>
@@ -242,13 +242,13 @@ export default function ChatInterface() {
         <div ref={messagesEndRef} />
       </div>
 
-      {/* Suggested Questions Chips (Scrollable Mobile Ribbon) */}
+      {/* Suggested Questions Chips */}
       <div className="py-2.5 flex items-center space-x-2 overflow-x-auto no-scrollbar">
         {suggestedQuestions.map((q, idx) => (
           <button
             key={idx}
             onClick={() => handleSubmit(null, q)}
-            className="px-3 py-1.5 rounded-full text-[11px] sm:text-xs bg-slate-900/90 hover:bg-amber-500/20 text-slate-300 hover:text-amber-400 border border-slate-800 transition-all whitespace-nowrap shrink-0 active:scale-95 min-h-[34px]"
+            className="px-3 py-1.5 rounded-full text-[11px] sm:text-xs bg-zinc-900/90 hover:bg-amber-500/20 text-zinc-300 hover:text-amber-400 border border-zinc-800 transition-all whitespace-nowrap shrink-0 active:scale-95 min-h-[34px]"
           >
             {q}
           </button>
@@ -262,7 +262,7 @@ export default function ChatInterface() {
           value={inputQuery}
           onChange={e => setInputQuery(e.target.value)}
           placeholder="Ask a technical or legal question on site..."
-          className="w-full bg-slate-900 border border-slate-800 rounded-2xl py-3.5 pl-4 pr-24 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 shadow-xl min-h-[48px]"
+          className="w-full bg-zinc-950 border border-zinc-800 rounded-2xl py-3.5 pl-4 pr-24 text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 shadow-xl min-h-[48px]"
         />
 
         <div className="absolute right-1.5 flex items-center space-x-1">
@@ -272,7 +272,7 @@ export default function ChatInterface() {
             className={`w-10 h-10 rounded-xl transition-all flex items-center justify-center ${
               isListening
                 ? 'bg-red-500 text-white recording-pulse'
-                : 'text-slate-400 hover:text-white hover:bg-slate-800'
+                : 'text-zinc-400 hover:text-white hover:bg-zinc-900'
             }`}
             title="Speech-to-text voice input"
           >
@@ -282,7 +282,7 @@ export default function ChatInterface() {
           <button
             type="submit"
             disabled={!inputQuery.trim() || isLoading}
-            className="w-10 h-10 rounded-xl bg-amber-500 text-slate-950 font-bold hover:bg-amber-400 disabled:opacity-50 disabled:cursor-not-allowed transition-all flex items-center justify-center shrink-0"
+            className="w-10 h-10 rounded-xl bg-amber-500 text-black font-bold hover:bg-amber-400 disabled:opacity-50 disabled:cursor-not-allowed transition-all flex items-center justify-center shrink-0"
           >
             <Send className="w-5 h-5" />
           </button>

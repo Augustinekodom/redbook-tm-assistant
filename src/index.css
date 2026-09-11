@@ -3,9 +3,9 @@
 @tailwind utilities;
 
 :root {
-  --bg-slate: #0b0f19;
-  --panel-bg: rgba(18, 24, 38, 0.88);
-  --panel-border: rgba(255, 255, 255, 0.08);
+  --bg-slate: #000000;
+  --panel-bg: rgba(12, 12, 14, 0.94);
+  --panel-border: rgba(255, 255, 255, 0.1);
   --brand-amber: #f59e0b;
   --brand-amber-light: #fbbf24;
   --brand-orange: #ea580c;
@@ -19,8 +19,8 @@ body {
   margin: 0;
   padding: 0;
   font-family: var(--font-body);
-  background-color: var(--bg-slate);
-  color: #f1f5f9;
+  background-color: #000000;
+  color: #f4f4f5;
   min-height: 100vh;
   min-height: 100dvh;
   overflow-x: hidden;
@@ -31,24 +31,24 @@ h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading);
 }
 
-/* Glassmorphism utilities */
+/* Glassmorphism utilities with Pitch Black backdrop */
 .glass-panel {
   background: var(--panel-bg);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   border: 1px solid var(--panel-border);
 }
 
 .glass-card {
-  background: rgba(30, 41, 59, 0.65);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.07);
+  background: rgba(18, 18, 22, 0.85);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .glass-card:hover {
-  background: rgba(30, 41, 59, 0.9);
-  border-color: rgba(245, 158, 11, 0.35);
+  background: rgba(24, 24, 28, 0.95);
+  border-color: rgba(245, 158, 11, 0.4);
 }
 
 /* Hide scrollbars for horizontal chip ribbon */
@@ -67,16 +67,16 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 ::-webkit-scrollbar-track {
-  background: rgba(15, 23, 42, 0.6);
+  background: #000000;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(245, 158, 11, 0.3);
+  background: rgba(245, 158, 11, 0.35);
   border-radius: 9999px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(245, 158, 11, 0.6);
+  background: rgba(245, 158, 11, 0.7);
 }
 
 /* Pulse animation for voice recording */
