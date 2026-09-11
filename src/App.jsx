@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Header from './components/Header';
+import MobileBottomNav from './components/MobileBottomNav';
 import ChatInterface from './components/ChatInterface';
 import Calculators from './components/Calculators';
 import RedBookBrowser from './components/RedBookBrowser';
@@ -10,21 +11,27 @@ export default function App() {
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col font-sans">
+    <div className="min-h-screen min-h-[100dvh] bg-slate-950 text-slate-100 flex flex-col font-sans">
       
-      {/* Header */}
+      {/* Top Header (Clean & Uncluttered on Mobile) */}
       <Header
         activeTab={activeTab}
         setActiveTab={setActiveTab}
         onOpenSettings={() => setIsSettingsOpen(true)}
       />
 
-      {/* Main View Area */}
-      <main className="flex-1">
+      {/* Main Content Area (With bottom padding on mobile for MobileBottomNav) */}
+      <main className="flex-1 pb-16 md:pb-0">
         {activeTab === 'chat' && <ChatInterface />}
         {activeTab === 'calculators' && <Calculators />}
         {activeTab === 'browse' && <RedBookBrowser />}
       </main>
+
+      {/* Mobile Bottom Navigation Dock (Visible on Mobile `< md`) */}
+      <MobileBottomNav
+        activeTab={activeTab}
+        setActiveTab={setActiveTab}
+      />
 
       {/* Settings Modal */}
       <SettingsModal
